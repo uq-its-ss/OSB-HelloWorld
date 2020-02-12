@@ -1,0 +1,57 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Hello World"
+  },
+  "host": "api.uq.edu.au",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/v1/hello",
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "basic": []
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "GET",
+        "description": "Get the hello world message",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "name of the person invoking this API",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "test",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "test description",
+                  "example": "Hello World <name>"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

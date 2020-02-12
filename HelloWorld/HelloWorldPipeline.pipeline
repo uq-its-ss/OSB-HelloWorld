@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="HelloWorld/Resources/HelloWorldService"/>
+            <con:binding>
+                <con:name>HelloWorldService_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/HelloWorld/HelloWorld/HelloWorldService</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N53edc990.5f90ad33.0.17032b96d6d.N7fc6">
+            <con:stage id="_StageId-N53edc990.5f90ad33.0.17032b96d6d.N7fc4" name="Stage1">
+                <con:context>
+                    <con2:userNsDecl prefix="hel" namespace="http://api.uq.edu.au/hello"/>
+                </con:context>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-N53edc990.N75908655.0.17031d2a65c.N7ffb</con2:id>
+                        <con3:logLevel>info</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N53edc990.5f90ad33.0.17032b96d6d.N7fc5">
+            <con:stage id="_StageId-N53edc990.5f90ad33.0.17032b96d6d.N7fc3" name="Stage1">
+                <con:context>
+                    <con2:userNsDecl prefix="hel" namespace="http://api.uq.edu.au/hello"/>
+                </con:context>
+                <con:actions>
+                    <con1:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-N53edc990.5f90ad33.0.17032b96d6d.N7fba</con2:id>
+                        <con1:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="HelloWorld/Transformations/hello"/>
+                                <con2:param name="request">
+                                    <con2:path>$body/*</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con1:expr>
+                    </con1:replace>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N53edc990.5f90ad33.0.17032b96d6d.N7fbe" name="Stage2">
+                <con:context/>
+                <con:actions>
+                    <con3:log>
+                        <con2:id>_ActionId-N53edc990.N75908655.0.17031d2a65c.N7ff4</con2:id>
+                        <con3:logLevel>info</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-N53edc990.5f90ad33.0.17032b96d6d.N7fcc" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="GET">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:pipeline-node name="Pipeline Pair Node2">
+                                <con:request>request-N53edc990.5f90ad33.0.17032b96d6d.N7fc6</con:request>
+                                <con:response>response-N53edc990.5f90ad33.0.17032b96d6d.N7fc5</con:response>
+                            </con:pipeline-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>
