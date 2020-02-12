@@ -28,7 +28,6 @@
           <oracleServerUrl>${weblogic.admin.url}</oracleServerUrl>
           <oracleUsername>${weblogic.admin.username}</oracleUsername>
           <oraclePassword>${weblogic.admin.password}</oraclePassword>          		 
-           <customization>${project.basedir}/Config/AnimalEthicsConfig.xml</customization>
         </configuration>
       </plugin>
      </plugins>
