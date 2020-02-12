@@ -3,18 +3,29 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.oracle.servicebus</groupId>
-        <artifactId>sbar-project-common</artifactId>
-        <version>12.2.1-1-0</version>
-    </parent>
-
-    <groupId>HelloWorld</groupId>
-    <artifactId>HelloWorld</artifactId>
+    <groupId>OSB-HelloWorldAPI</groupId>
+    <artifactId>OSB-HelloWorldAPI</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <packaging>sbar</packaging>
+    <packaging>pom</packaging>
 
-    <description/>
-
+    <modules>
+        <module>HelloWorld</module>
+    </modules>
+   <pluginRepositories>
+    <pluginRepository>
+      <id>SmartBearPluginRepository</id>
+      <url>http://www.soapui.org/repository/maven2/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+   <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
 </project>

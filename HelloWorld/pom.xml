@@ -9,12 +9,28 @@
         <version>12.2.1-1-0</version>
     </parent>
 
-    <groupId>HelloWorld</groupId>
+    <groupId>OSB-HelloWorldAPI</groupId>
     <artifactId>HelloWorld</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <packaging>sbar</packaging>
 
     <description/>
-
+    <build>
+      <plugins>
+       <plugin>
+        <groupId>com.oracle.servicebus.plugin</groupId>
+        <artifactId>oracle-servicebus-plugin</artifactId>
+        <version>12.2.1-1-0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <oracleHome>${oracle.home}</oracleHome>
+          <oracleServerUrl>${weblogic.admin.url}</oracleServerUrl>
+          <oracleUsername>${weblogic.admin.username}</oracleUsername>
+          <oraclePassword>${weblogic.admin.password}</oraclePassword>          		 
+           <customization>${project.basedir}/Config/AnimalEthicsConfig.xml</customization>
+        </configuration>
+      </plugin>
+     </plugins>
+    </build>
 </project>
