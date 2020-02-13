@@ -8,7 +8,7 @@
   "schemes": [
     "https"
   ],
-  "basePath": "/v1/hello",
+  "basePath": "/HelloWorld/HelloWorldService",
   "produces": [
     "application/json"
   ],
